@@ -1,0 +1,46 @@
+from pywhatkit import image_to_ascii_art as sac
+pic = 'spiderman.jpg'
+text = "spiderman"        
+sac(pic, text)
+
+import turtle as t 
+a_x = -170              
+a_y = 350
+
+p = t.Pen()
+t.setup(430,768)
+t.bgcolor('black')
+p.speed(0)
+p.up()
+p.width(3)
+f_n = 0
+d_n = 4
+
+
+def set_color(c):
+    sym = {".": 'white', "S" : 'black', "#" : 'red', "&" : 'black', "@":'black', "$" : 'black', "%" : 'black', "!":'black', ":" :'black', "*":'black'}
+    color = sym[c]
+    p.pencolor(color)
+
+def b(n, a_sym):
+     p.up()
+     if a_sym != '\n':
+         set_color(a_sym)
+
+     p.goto(a_x- n, a_y )
+     p.down()
+     p.forward(1)
+
+text = open('spiderman.txt','r')
+te = text.readlines()
+for i in te:
+    for j in i:
+        b(f_n, j)
+        f_n -= 4
+    a_y -= 8
+    a_x = -170    
+    f_n = 0
+    d_n = 4
+
+t.done()
+
